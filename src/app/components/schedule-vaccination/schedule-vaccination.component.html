@@ -1,1 +1,107 @@
-<p>schedule-vaccination works!</p>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <form class="row " #f="ngForm"
+                    (ngSubmit)="f.form.valid && saveScheduleVaccination(f)" novalidate>
+
+
+
+                    <div class="form-group">
+                        <label for="branch" class="form-label">Schedule Vacc. Branch </label>
+
+                        <select
+                            class="form-select form-select-sm  {{branch.invalid && f.submitted?'is-invalid':''}}"
+                            id="branch" name="branch" required [(ngModel)]="model.branch"
+                            #branch="ngModel" aria-label=".form-select-sm example"
+                            [compareWith]="compareFn">
+                            <option selected>select Branch</option>
+                            <option *ngFor="let branch of allBranches" [ngValue]="branch">
+                                {{branch.name}}</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="f.submitted && branch.invalid ">
+                            <div *ngIf="branch.errors?.required"> Schedule Vacc. Branch is required.
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="paymentMethod" class="form-label">Schedule Vacc. Payment
+                        </label>
+
+                        <select
+                            class="form-select form-select-sm  {{paymentMethod.invalid && f.submitted?'is-invalid':''}}"
+                            id="paymentMethod" name="paymentMethod" required
+                            [(ngModel)]="model.paymentMethod" #paymentMethod="ngModel"
+                            aria-label=".form-select-sm example" [compareWith]="compareFn">
+                            <option selected>Select paymentMethod</option>
+                            <option value="{{'CASH'}}">Cash</option>
+                            <option value="{{'CREDIT'}}">Credit</option>
+                            <option value="{{'FAWRY'}}">Fawry</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="f.submitted && paymentMethod.invalid ">
+                            <div *ngIf="paymentMethod.errors?.required"> Schedule Vacc. Payment is
+                                required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label"> Schedule Vacc. Email </label>
+                        <input type="email" id="email" name="email" [(ngModel)]="model.email"
+                            class="form-control form-control-sm   {{email.invalid && f.submitted?'is-invalid':''}}"
+                            #email="ngModel" required>
+                        <div class="invalid-feedback" *ngIf="f.submitted && email.invalid ">
+                            <div *ngIf="email.errors?.required"> Schedule Vacc. Email is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vacDesc" class="form-label">Schedule Vacc. Desc</label>
+                        <input type="text" id="vacDesc" name="vacDesc" [(ngModel)]="model.vacDesc"
+                            class="form-control form-control-sm   {{vacDesc.invalid && f.submitted?'is-invalid':''}}"
+                            #vacDesc="ngModel" required>
+                        <div class="invalid-feedback" *ngIf="f.submitted && vacDesc.invalid ">
+                            <div *ngIf="vacDesc.errors?.required"> Schedule Vacc. Desc is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex d-md-block">
+                        <button type="submit" class="btn btn-primary">Submit </button>
+                        <button type="reset" class="btn btn-primary">Cancel </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-8">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let col of columnNames" id="{{col.columHead}}">
+                                {{ col.columHead }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of allScheduleVaccinationes" (click)="getRow(row)"
+                            [ngClass]="row?.branch?.name==selectedRow?.branch?.name ? 'row_selected' : ''">
+                            <td *ngFor="let col of columnNames">
+                                <span *ngIf="col?.property=='branch'"> {{row?.branch?.name}} </span>
+                                <span *ngIf="col?.property=='vacTime'"> {{row?.vacTime}}</span>
+                                <span *ngIf="col?.property=='paymentMethod'">
+                                    {{row?.paymentMethod}}</span>
+                                <span *ngIf="col?.property=='vacDesc'"> {{row?.vacDesc}} </span>
+                                <span *ngIf="col?.property=='email'"> {{row?.email}} </span>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -13,6 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ErrorHandlerInterceptorInterceptor } from './interceptor/error-handler-interceptor.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { VaccConfirmationComponent } from './components/vacc-confirmation/vacc-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HomeComponent,
     VaccineComponent,
     BranchComponent,
-    ScheduleVaccinationComponent
+    ScheduleVaccinationComponent,
+    VaccConfirmationComponent
   ],
   imports: [
     BrowserModule,
