@@ -1,1 +1,58 @@
-<p>all-vaccine-by-branch works!</p>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <form class="row " #f="ngForm" (ngSubmit)="f.form.valid && getVaccineByBranchId(f)"
+                    novalidate>
+
+                    <div class="form-group">
+                        <label for="branch" class="form-label"> Branch </label>
+
+                        <select
+                            class="form-select form-select-sm  {{branch.invalid && f.submitted?'is-invalid':''}}"
+                            id="branch" name="branch" required [(ngModel)]="branchId"
+                            #branch="ngModel" aria-label=".form-select-sm example"
+                            [compareWith]="compareFn">
+                            <option selected>select Branch</option>
+                            <option *ngFor="let branch of allBranches" [ngValue]="branch.id">
+                                {{branch.name}}</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="f.submitted && branch.invalid ">
+                            <div *ngIf="branch.errors?.required"> Branch is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex d-md-block">
+                        <button type="submit" class="btn btn-primary">Submit </button>
+                        <button type="reset" class="btn btn-primary">Cancel </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-7">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let col of columnNames" id="{{col.columHead}}">
+                                {{ col.columHead }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of allVaccines" (click)="getRow(row)"
+                            [ngClass]="row?.name==selectedRow?.name ? 'row_selected' : ''">
+                            <td *ngFor="let col of columnNames">
+                                <span *ngIf="col?.property=='name'"> {{row?.name}} </span>
+                                <span *ngIf="col?.property=='manufacture'">
+                                    {{row?.manufacture}}</span>
+                                <span *ngIf="col?.property=='country'"> {{row?.country}}</span>
+                                <span *ngIf="col?.property=='notes'"> {{row?.notes}} </span>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

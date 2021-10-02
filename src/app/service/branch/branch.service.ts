@@ -23,6 +23,11 @@ export class BranchService {
   }
 
 
+  branchVaccineAvailablityByVaccineId(vaccineId: number): Observable<BranchModel[]> {
+    return this.http.get<BranchModel[]>(this.url + '/' + vaccineId + '/forBranch',
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
+
+  }
   create(model: BranchModel): Observable<BranchModel> {
     return this.http.post<BranchModel>(this.url, model,
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });

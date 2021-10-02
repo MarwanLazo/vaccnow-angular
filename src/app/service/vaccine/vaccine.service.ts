@@ -15,6 +15,7 @@ export class VaccineService {
   private url: string = '/api/vaccine';
 
 
+
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<VaccineModel[]> {
@@ -22,6 +23,11 @@ export class VaccineService {
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
 
+
+  getVaccineByBranchId(branchId: number): Observable<VaccineModel[]> {
+    return this.http.get<VaccineModel[]>(this.url + '/' + branchId,
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
+  }
 
   create(model: VaccineModel): Observable<VaccineModel> {
     return this.http.post<VaccineModel>(this.url, model,
@@ -34,5 +40,7 @@ export class VaccineService {
     return this.http.put<VaccineModel>(this.url, model,
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
+
+
 
 }
