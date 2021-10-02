@@ -1,1 +1,34 @@
-<p>all-branches works!</p>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-9">
+                <h3>All Available Branches</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let col of columnNames" id="{{col.columHead}}">
+                                {{ col.columHead }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of allBranches">
+                            <td *ngFor="let col of columnNames">
+                                <span *ngIf="col?.property=='name'"> {{row?.name}} </span>
+                                <span *ngIf="col?.property=='location'">
+                                    {{row?.location}}</span>
+                                <span *ngIf="col?.property=='phone'"> {{row?.phone}}</span>
+                                <span *ngIf="col?.property=='email'"> {{row?.email}} </span>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</div>

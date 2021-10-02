@@ -17,6 +17,7 @@ import { VaccConfirmationComponent } from './components/vacc-confirmation/vacc-c
 import { AllBranchesComponent } from './components/all-branches/all-branches.component';
 import { AllVaccineByBranchComponent } from './components/all-vaccine-by-branch/all-vaccine-by-branch.component';
 import { VaccineAvaliableByBranchComponent } from './components/vaccine-avaliable-by-branch/vaccine-avaliable-by-branch.component';
+import { VaccineBranchComponent } from './components/vaccine-branch/vaccine-branch.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { VaccineAvaliableByBranchComponent } from './components/vaccine-avaliabl
     VaccConfirmationComponent,
     AllBranchesComponent,
     AllVaccineByBranchComponent,
-    VaccineAvaliableByBranchComponent
+    VaccineAvaliableByBranchComponent,
+    VaccineBranchComponent
   ],
   imports: [
     BrowserModule,
