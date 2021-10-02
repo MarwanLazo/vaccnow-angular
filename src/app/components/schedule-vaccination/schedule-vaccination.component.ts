@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BranchModel } from 'src/app/model/BranchModel';
 import { ColumnNames } from 'src/app/model/ColumnNames';
-import { PaymentMethodEnum } from 'src/app/model/PaymentMethodEnum';
+
+
 import { ScheduleVaccinationModel } from 'src/app/model/ScheduleVaccinationModel';
 import { BranchService } from 'src/app/service/branch/branch.service';
 import { ScheduleVaccinationService } from 'src/app/service/schedule-vaccination/schedule-vaccination.service';
@@ -19,7 +20,6 @@ export class ScheduleVaccinationComponent implements OnInit {
   allScheduleVaccinationes: ScheduleVaccinationModel[] = [];
   allBranches: BranchModel[] = [];
   allPayment: any;
-  paymentMethodEnum: any;
 
   mod: string = 'CREATE';
   selectedRow!: ScheduleVaccinationModel;
@@ -33,10 +33,7 @@ export class ScheduleVaccinationComponent implements OnInit {
 
   ];
 
-  constructor(private scheduleVaccinationService: ScheduleVaccinationService, private branchService: BranchService) {
-    this.allPayment = Object.keys;
-    this.paymentMethodEnum = PaymentMethodEnum;
-  }
+  constructor(private scheduleVaccinationService: ScheduleVaccinationService, private branchService: BranchService) { }
 
   ngOnInit(): void {
     this.model = new ScheduleVaccinationModel();
