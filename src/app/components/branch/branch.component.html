@@ -2,40 +2,109 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-4">
-                <form class="row g-3">
-                    <div class="mb-1">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1"
-                            aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">We'll never share your email with
-                            anyone
-                            else.
+                <form class="row " #f="ngForm" (ngSubmit)="f.form.valid && saveBranch(f)"
+                    novalidate>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Branch Name</label>
+                        <input type="text" id="name" name="name" [(ngModel)]="model.name"
+                            class="form-control form-control-sm   {{name.invalid && f.submitted?'is-invalid':''}}"
+                            #name="ngModel" required>
+                        <div class="invalid-feedback" *ngIf="f.submitted && name.invalid ">
+                            <div *ngIf="name.errors?.required"> Branch Name is required. </div>
                         </div>
                     </div>
-                    <div class="mb-1">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-1 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+
+
+                    <div class="form-group">
+                        <label for="location" class="form-label">Branch Location</label>
+                        <input type="text" id="location" name="location"
+                            [(ngModel)]="model.location"
+                            class="form-control form-control-sm   {{location.invalid && f.submitted?'is-invalid':''}}"
+                            #location="ngModel" required>
+                        <div class="invalid-feedback" *ngIf="f.submitted && location.invalid ">
+                            <div *ngIf="location.errors?.required"> Branch Location is required.
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="mb-1 ">
-                        <label class="form-check-label" for="select_menu">Select menu</label>
-                        <select class="form-select" aria-label="Default select example"
-                            id="select_menu">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-label"> Branch phone </label>
+                        <input type="text" id="phone" name="phone" [(ngModel)]="model.phone"
+                            class="form-control form-control-sm   {{phone.invalid && f.submitted?'is-invalid':''}}"
+                            #phone="ngModel" required>
+                        <div class="invalid-feedback" *ngIf="f.submitted && phone.invalid ">
+                            <div *ngIf="phone.errors?.required"> Branch phone is required.
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label"> Branch Email </label>
+                        <input type="email" id="email" name="email" [(ngModel)]="model.email"
+                            class="form-control form-control-sm   {{email.invalid && f.submitted?'is-invalid':''}}"
+                            #email="ngModel" required>
+                        <div class="invalid-feedback" *ngIf="f.submitted && email.invalid ">
+                            <div *ngIf="email.errors?.required"> Branch Email is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="workStartHour" class="form-label"> Work Hours </label>
+
+                        <div class="input-group">
+                            <input name="workStartHour" id="workStartHour"
+                                [(ngModel)]="model.workStartHour" required
+                                class="form-control form-control-sm  {{workStartHour.invalid && f.submitted?'is-invalid':''}}"
+                                #workStartHour="ngModel">
+                            :
+                            <input name="workEndHour" [(ngModel)]="model.workEndHour" required
+                                class="form-control form-control-sm  {{workEndHour.invalid && f.submitted?'is-invalid':''}}"
+                                #workEndHour="ngModel">
+
+
+                            <div class="invalid-feedback"
+                                *ngIf="f.submitted &&( workStartHour.invalid || workEndHour.invalid) ">
+                                <div
+                                    *ngIf="workStartHour.errors?.required || workEndHour.errors?.required">
+                                    Work Hours required (Start, End)
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
-            <div class="col-md-8"> {{model}} -- {{model|json}}</div>
+            <div class="col-md-8">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let col of columnNames" id="{{col.columHead}}">
+                                {{ col.columHead }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of allBranches" (click)="getRow(row)"
+                            [ngClass]="row?.name==selectedRow?.name ? 'row_selected' : ''">
+                            <td *ngFor="let col of columnNames">
+                                <span *ngIf="col?.property=='name'"> {{row?.name}} </span>
+                                <span *ngIf="col?.property=='location'">
+                                    {{row?.location}}</span>
+                                <span *ngIf="col?.property=='phone'"> {{row?.phone}}</span>
+                                <span *ngIf="col?.property=='email'"> {{row?.email}} </span>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
         </div>
     </div>
 </div>

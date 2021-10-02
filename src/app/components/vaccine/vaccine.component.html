@@ -1,1 +1,89 @@
-<p>vaccine works!</p>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <form class="row " #f="ngForm" (ngSubmit)="f.form.valid && saveVaccine(f)"
+                    novalidate>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Vaccine Name</label>
+                        <input type="text" id="name" name="name" [(ngModel)]="model.name"
+                            class="form-control form-control-sm   {{name.invalid && f.submitted?'is-invalid':''}}"
+                            #name="ngModel" required>
+                        <div class="invalid-feedback" *ngIf="f.submitted && name.invalid ">
+                            <div *ngIf="name.errors?.required"> Vaccine Name is required. </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="manufacture" class="form-label">Vaccine Manufacture</label>
+                        <input type="text" id="manufacture" name="manufacture"
+                            [(ngModel)]="model.manufacture"
+                            class="form-control form-control-sm   {{manufacture.invalid && f.submitted?'is-invalid':''}}"
+                            #manufacture="ngModel" required>
+                        <div class="invalid-feedback" *ngIf="f.submitted && manufacture.invalid ">
+                            <div *ngIf="manufacture.errors?.required"> Vaccine manufacture is
+                                required. </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="country" class="form-label">Vaccine country</label>
+                        <input type="text" id="country" name="country" [(ngModel)]="model.country"
+                            class="form-control form-control-sm   {{country.invalid && f.submitted?'is-invalid':''}}"
+                            #country="ngModel" required>
+                        <div class="invalid-feedback" *ngIf="f.submitted && country.invalid ">
+                            <div *ngIf="country.errors?.required"> Vaccine country is
+                                required. </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes" class="form-label">Vaccine notes</label>
+                        <input type="text" id="notes" name="notes" [(ngModel)]="model.notes"
+                            class="form-control form-control-sm   {{notes.invalid && f.submitted?'is-invalid':''}}"
+                            #notes="ngModel" required>
+                        <div class="invalid-feedback" *ngIf="f.submitted && notes.invalid ">
+                            <div *ngIf="notes.errors?.required"> Vaccine notes is
+                                required. </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="row"><button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-8">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let col of columnNames" id="{{col.columHead}}">
+                                {{ col.columHead }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of allVaccinees" (click)="getRow(row)"
+                            [ngClass]="row?.name==selectedRow?.name ? 'row_selected' : ''">
+                            <td *ngFor="let col of columnNames">
+                                <span *ngIf="col?.property=='name'"> {{row?.name}} </span>
+                                <span *ngIf="col?.property=='manufacture'">
+                                    {{row?.manufacture}}</span>
+                                <span *ngIf="col?.property=='country'"> {{row?.country}}</span>
+                                <span *ngIf="col?.property=='notes'"> {{row?.notes}} </span>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</div>

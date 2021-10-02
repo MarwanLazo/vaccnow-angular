@@ -4,8 +4,12 @@ export class BranchModel {
     location!: string;
     phone!: string;
     email!: string;
-    vaccineId!: boolean;
-
     workStartDate!: Date;
     workEndDate!: Date;
+
+
+    workStartHour!: number;
+    workEndHour!: number;
+
+    vaccineId!: boolean;
 }

@@ -9,6 +9,10 @@ import { HomeComponent } from './components/home/home.component';
 import { VaccineComponent } from './components/vaccine/vaccine.component';
 import { BranchComponent } from './components/branch/branch.component';
 import { ScheduleVaccinationComponent } from './components/schedule-vaccination/schedule-vaccination.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ErrorHandlerInterceptorInterceptor } from './interceptor/error-handler-interceptor.interceptor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,9 +26,12 @@ import { ScheduleVaccinationComponent } from './components/schedule-vaccination/
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NgbModule,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerInterceptorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
