@@ -14,6 +14,9 @@ import { FormsModule } from '@angular/forms';
 import { ErrorHandlerInterceptorInterceptor } from './interceptor/error-handler-interceptor.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VaccConfirmationComponent } from './components/vacc-confirmation/vacc-confirmation.component';
+import { AllBranchesComponent } from './components/all-branches/all-branches.component';
+import { AllVaccineByBranchComponent } from './components/all-vaccine-by-branch/all-vaccine-by-branch.component';
+import { VaccineAvaliableByBranchComponent } from './components/vaccine-avaliable-by-branch/vaccine-avaliable-by-branch.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { VaccConfirmationComponent } from './components/vacc-confirmation/vacc-c
     VaccineComponent,
     BranchComponent,
     ScheduleVaccinationComponent,
-    VaccConfirmationComponent
+    VaccConfirmationComponent,
+    AllBranchesComponent,
+    AllVaccineByBranchComponent,
+    VaccineAvaliableByBranchComponent
   ],
   imports: [
     BrowserModule,
