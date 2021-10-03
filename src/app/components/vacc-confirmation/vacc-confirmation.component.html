@@ -14,12 +14,12 @@
 
                         <select
                             class="form-select form-select-sm  {{email.invalid && f.submitted?'is-invalid':''}}"
-                            id="email" name="email" required [(ngModel)]="model.email"
-                            #email="ngModel" aria-label=".form-select-sm example"
-                            [compareWith]="compareFn">
+                            id="email" name="email" required [(ngModel)]="model" #email="ngModel"
+                            aria-label=".form-select-sm example" [compareWith]="compareFn">
                             <option selected>Select Email</option>
-                            <option *ngFor="let email of allUnConfirmedEmails" [ngValue]="email">
-                                {{email}}</option>
+                            <option *ngFor="let scVacc of allScheduleVaccUnConfirmed"
+                                [ngValue]="scVacc">
+                                {{scVacc.email}}</option>
                         </select>
                         <div class="invalid-feedback" *ngIf="f.submitted && email.invalid ">
                             <div *ngIf="email.errors?.required"> Schedule Vacc. Email is
@@ -48,7 +48,7 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let row of allScheduleVaccUnConfirmed" (click)="getRow(row)"
-                                [ngClass]="row?.email==selectedRow?.email ? 'row_selected' : ''">
+                                [ngClass]="row?.id==selectedRow?.id ? 'row_selected' : ''">
                                 <td *ngFor="let col of columnNames">
                                     <span *ngIf="col?.property=='branch'"> {{row?.branch?.name}}
                                     </span>

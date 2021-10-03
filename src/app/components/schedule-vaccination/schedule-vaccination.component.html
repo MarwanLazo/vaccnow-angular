@@ -86,7 +86,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let row of allScheduleVaccinationes" (click)="getRow(row)"
-                            [ngClass]="row?.branch?.name==selectedRow?.branch?.name ? 'row_selected' : ''">
+                            [ngClass]="row?.id==selectedRow?.id ? 'row_selected' : ''">
                             <td *ngFor="let col of columnNames">
                                 <span *ngIf="col?.property=='branch'"> {{row?.branch?.name}} </span>
                                 <span *ngIf="col?.property=='vacTime'"> {{row?.vacTime}}</span>
