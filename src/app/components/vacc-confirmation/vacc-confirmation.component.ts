@@ -26,6 +26,7 @@ export class VaccConfirmationComponent implements OnInit {
   columnNames: ColumnNames[] = [
     { columHead: 'Schedule Vacc. branch', property: 'branch' },
     { columHead: 'Schedule Vacc. Date', property: 'vacTime' },
+    { columHead: 'Schedule Vacc. Request', property: 'request' },
     { columHead: 'Schedule Vacc. Payment', property: 'paymentMethod' },
     { columHead: 'Schedule Vacc. Email', property: 'email' },
     { columHead: 'Schedule Vacc. Desc', property: 'vacDesc' },

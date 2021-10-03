@@ -10,6 +10,7 @@ export class ScheduleVaccinationModel {
     vacTime!: Date;
     branch!: BranchModel;
     confirmed!: boolean;
+    request!: string;
 
 
 }
