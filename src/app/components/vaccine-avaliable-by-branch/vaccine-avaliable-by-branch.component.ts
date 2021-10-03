@@ -24,7 +24,6 @@ export class VaccineAvaliableByBranchComponent implements OnInit {
     { columHead: 'Branch Phone', property: 'phone' },
     { columHead: 'Branch Email', property: 'email' },
     { columHead: 'Vaccine Exist', property: 'vaccineId' }
-
   ];
 
   constructor(private branchService: BranchService, private vaccineService: VaccineService) { }
